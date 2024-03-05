@@ -12,8 +12,7 @@ import {Component} from "./component";
 
       form.addEventListener(
           "submit",
-          // TODO #arrow-function: use arrow function instead.
-          function (event) {
+          (event) => {
             event.preventDefault();
             if (form.checkValidity() === false) {
               event.stopPropagation();
@@ -24,7 +23,7 @@ import {Component} from "./component";
 
               this._startGame(name, size);
             }
-          }.bind(this),
+          },
           false
       );
 
@@ -33,7 +32,6 @@ import {Component} from "./component";
 
     _startGame(name, size){
       let gamePage = "./#game";
-      // TODO #template-literals:  use template literals (backquotes)
-      window.location = gamePage + "?name=" + name + "&size=" + size;
+      window.location = `${gamePage}?name=${name}&size=${size}`;
     }
   }

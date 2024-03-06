@@ -42,30 +42,26 @@ let CARD_TEMPLATE = ""
       this.template = template;
     }
 
-    init(){
+    async init(){
       // fetch the cards configuration from the server
-      this.fetchConfig(
-          (config) => {
-            this._config = config;
-            this._boardElement = document.querySelector(".cards");
+      this._config = await this.fetchConfig();
+      this._boardElement = document.querySelector(".cards");
 
-            // create cards out of the config
-            this._cards = [];
-            this._cards = this._config.ids.map((id) => new CardComponent(id))
-            //this._config.ids.map((x) => this._cards[x]=new CardComponent(this._config.ids[x]))
+      // create cards out of the config
+      this._cards = [];
+      this._cards = this._config.ids.map((id) => new CardComponent(id))
+      //this._config.ids.map((x) => this._cards[x]=new CardComponent(this._config.ids[x]))
 
-            this._cards.forEach((card) => {
-              this._boardElement.appendChild(card.getElement());
-              card.getElement().addEventListener("click",
-                  () => {
-                    this._flipCard(card);
-                  })
-            });
+      this._cards.forEach((card) => {
+        this._boardElement.appendChild(card.getElement());
+        card.getElement().addEventListener("click",
+            () => {
+              this._flipCard(card);
+            })
+      });
 
 
-            this.start();
-          }
-      );
+      this.start();
     }
 
     start(){
@@ -83,30 +79,8 @@ let CARD_TEMPLATE = ""
       );
     }
 
-    fetchConfig(cb){
-      let xhr =
-          typeof XMLHttpRequest != "undefined"
-              ? new XMLHttpRequest()
-              : new ActiveXObject("Microsoft.XMLHTTP");
-
-      xhr.open("get", `${environment.api.host}/board?size=${this._size}`, true);
-
-      xhr.onreadystatechange = () => {
-        let status;
-        let data;
-        // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
-        if (xhr.readyState == 4) {
-          // `DONE`
-          status = xhr.status;
-          if (status == 200) {
-            data = JSON.parse(xhr.responseText);
-            cb(data);
-          } else {
-            throw new Error(status);
-          }
-        }
-      };
-      xhr.send();
+    async fetchConfig(cb){
+      return fetch(`${environment.api.host}/board?size=${this._size}`).then((r) => r.json());
     }
 
     goToScore(){

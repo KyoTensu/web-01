@@ -13,8 +13,6 @@ import "./card.component.css";
 import CARD_TEMPLATE from "./card.component.html";
 
 
-// TODO #card-component: Change images location to /app/components/game/card/assets/***.png
-// TODO #import-assets: use ES default import to import images.
 import {Component} from "../../../scripts/component";
 
 let CARDS_IMAGE = [
@@ -33,7 +31,7 @@ let CARDS_IMAGE = [
 
 /* class CardComponent constructor */
 export class CardComponent extends Component {
-    constructor(id){
+    constructor(id) {
         super(CARD_TEMPLATE);
         // is this card flipped?
         this._flipped = false;
@@ -53,20 +51,20 @@ export class CardComponent extends Component {
         this._imageElt.querySelector("img.back-face").src = CARDS_IMAGE[0];
     }
 
-    getElement(){
+    getElement() {
         return this._elt;
     }
 
-    flip(){
+    flip() {
         this._imageElt.classList.toggle("flip");
         this._flipped = !this._flipped;
     }
 
-    equals(card){
+    equals(card) {
         return card._id === this._id;
     }
 
-    get flipped(){
+    get flipped() {
         return this._flipped;
     }
 }

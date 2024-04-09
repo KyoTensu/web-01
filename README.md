@@ -1,4 +1,4 @@
-# TP Développement Web (CHAMPEAU Loïc et SORROCHE Erwan)
+# TP Développement Web (CHAMPEAU Loïc et ROUBAUD Mathieu)
 
 ## Réponses aux questions
 

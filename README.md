@@ -10,7 +10,7 @@
 
 4. Une `closure` est une fonction qui se souvient de l'environnement dans laquelle elle à été créée, c'est-à-dire une fonction qui accès à ses variables internes, à celles de sa fonction parente et également celles du scope global. Une `IIFE` est une fonction qui est immédiatement appelée à sa définition (Immediately Invoked Function Expressions). Les `IIFE` était un moyen de créer des scopes privés avant l'arrivée des `ES Modules`.
 
-5. `import *` permet d'importer tout les éléments exportés d'un fichier, alors que `import {method}` permet d'importer uniquement les éléments indiqués entre les accolades (s'ils ont bien été exportés dans le fichier cible). Il se peut donc que, par exemple, en utilisant `import *` que l'on se retrouve à importer des éléments dans un fichier qui lui seraient inutiles.
+5. `import * as toto` permet d'importer tout les éléments exportés d'un fichier sous un nouveau nom (ici "toto"), alors que `import {method}` permet d'importer uniquement les éléments indiqués entre les accolades (s'ils ont bien été exportés dans le fichier cible). Il se peut donc que, par exemple, en utilisant `import * as toto` que l'on se retrouve à importer des éléments dans un fichier qui lui seraient inutiles.
 
 6. Par rapport aux classes ES6, les classes Java peuvent avoir de **"l'overloading"**, c'est a dire avoir plusieurs fois la même méthode mais avec des paramètres différents et des définitions différentes. Les classes ES6 n'ont pas de système d'encapsulation à proprement parler, c'est a dire qu'elles n'ont pas de définition "private" pour les méthodes et les attributs.
 
